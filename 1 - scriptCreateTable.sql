@@ -1,3 +1,6 @@
+CREATE DATABASE CriptoMonedas
+GO
+
 CREATE TABLE Cliente(
 		IdCliente int PRIMARY KEY IDENTITY(1,1),
 		Nombre varchar(45),
