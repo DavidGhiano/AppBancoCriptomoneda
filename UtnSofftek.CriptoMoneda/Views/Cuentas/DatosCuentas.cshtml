@@ -1,0 +1,87 @@
+﻿@model CuentasModel
+@{
+    ViewData["Title"] = "DatosCuentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-center mt-4">Mis Cuentas</h2>
+        </div>
+        <div class="card-body">
+            @if (Model.Fiduciaria != null)
+            {
+                @if (Model.Fiduciaria.Tipo == "ARG")
+                {
+                    <h5 class="card-title">Cuenta en Pesos</h5>
+                }
+                else
+                {
+                    <h5 class="card-title">Cuenta en Dolares</h5>
+                }
+                <p class="card-text">
+                    <strong>Nro Cuenta: </strong> @Model.Fiduciaria.NroCuenta
+                </p>
+                <p class="card-text">
+                    <strong>CBU: </strong> @Model.Fiduciaria.CBU
+                </p>
+                <p class="card-text">
+                    <strong>Alias: </strong>@Model.Fiduciaria.Alias
+                </p>
+                <p class="card-text text-end">
+                    <strong>SALDO: </strong> @Model.Fiduciaria.Tipo $@Model.Fiduciaria.Saldo.ToString("0.##")
+                </p>
+            }
+            else
+            {
+                <h5 class="card-title">Cuenta en BitCoin</h5>
+                <p class="card-text">
+                    <strong>UUID </strong> @Model.Cripto.Uuid
+                </p>
+                <p class="card-text text-end">
+                    <strong>SALDO: </strong> @Model.Cripto.Tipo $@Model.Cripto.Saldo.ToString("0.######")
+                </p>
+            }
+
+        </div>
+        <div class="card-footer">
+            @if (Model.Fiduciaria != null)
+            {
+                <a asp-action="Depositar"
+               asp-controller="Cuentas"
+               asp-route-id=@Model.Fiduciaria.IdCuenta
+               class="btn btn-success d-block my-2">Depositar</a>
+                @if (Model.Fiduciaria.Saldo > 0)
+                {
+                    <a asp-action="Extraer"
+               asp-controller="Cuentas"
+               asp-route-id=@Model.Fiduciaria.IdCuenta
+               class="btn btn-primary d-block my-2">Extraer</a>
+                    <a asp-action="TransferirFiducaria"
+               asp-controller="Cuentas"
+               asp-route-id=@Model.Fiduciaria.IdCuenta
+               class="btn btn-warning d-block my-2">Transferir</a>
+                }
+                <a asp-action="Listar"
+               asp-controller="Historial"
+               asp-route-id=@Model.Fiduciaria.IdCuenta
+               class="btn btn-secondary d-block my-2">Ver Movimientos</a>
+            }
+            else
+            {
+                @if (Model.Cripto.Saldo > 0)
+                {
+                    <a asp-action="TransferirCripto"
+                        asp-controller="Cuentas" 
+                        asp-route-id=@Model.Cripto.IdCuenta
+                        class="btn btn-warning d-block my-2">Transferir</a>
+                }
+                <a asp-action="Listar"
+               asp-controller="Historial"
+               asp-route-id=@Model.Cripto.IdCuenta
+               class="btn btn-secondary d-block my-2">Ver Movimientos</a>
+            }
+        </div>
+    </div>
+</div>

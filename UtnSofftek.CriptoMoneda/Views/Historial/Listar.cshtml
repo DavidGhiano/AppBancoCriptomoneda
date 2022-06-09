@@ -1,0 +1,62 @@
+﻿@model List<HistorialModel>
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Movimientos de la Cuenta
+    </div>
+
+    <hr />
+    <table class="table d-lg-table table-striped text-center">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (@item.Tipo == "Deposito")
+                {
+                    <tr class="table-success">
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Tipo.ToUpper()</td>
+                        <td>$@item.Monto.ToString("0.######")</td>
+                    </tr>
+                }
+                else if (@item.Tipo == "Extraccion")
+                {
+                    <tr class="table-danger">
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Tipo.ToUpper()</td>
+                        <td>$@item.Monto.ToString("0.######")</td>
+                    </tr>
+                }
+                else if (@item.Tipo == "Transf. Realizada")
+                {
+                    <tr class="table-danger">
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Tipo.ToUpper()</td>
+                        <td>$@item.Monto.ToString("0.######")</td>
+                    </tr>
+                }
+                else if (@item.Tipo == "Transf. Recibida")
+                {
+                    <tr class="table-success">
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Tipo.ToUpper()</td>
+                        <td>$@item.Monto.ToString("0.######")</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+

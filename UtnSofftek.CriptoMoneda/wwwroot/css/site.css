@@ -1,0 +1,237 @@
+:root {
+    --fuentePrincipal: "Roboto", sans-serif;
+    --fuenteSecundaria: "Open Sans", sans-serif;
+    --colorPrincipal: rgb(23,33,34);
+    --colorAzul: rgb(43,82,120);
+    --colorAzulOscuro: rgb(36,47,61);
+    --colorAzulClaro: rgb(70, 130, 180);
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    font-family: var(--fuentePrincipal);
+}
+
+body {
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+/* GLOBALES */
+a {
+    color: white;
+    text-decoration: none;
+    font-family: var(--fuenteSecundaria);
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fuenteSecundaria);
+}
+
+h1 {
+    font-size: 5.6rem;
+}
+
+
+input,
+button,
+select,
+textarea {
+    font-family: var(--fuentePrincipal);
+    font-size: 1.6rem !important;
+    display: block;
+    width: 100%;
+}
+
+.btn {
+    font-family: var(--fuenteSecundaria);
+    font-size: 1.4rem;
+}
+
+
+/* INDEX */
+.contenido {
+    display: grid;
+    grid-template-columns: 1.2fr 4fr;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--colorPrincipal);
+    width: 100%;
+    height: 100vh;
+    color: white;
+    grid-column: 1/2;
+    position: fixed;
+}
+
+    .sidebar .menu-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+    }
+
+    .sidebar ul {
+        margin-top: 3rem;
+        border-top: 1px solid var(--colorAzul)
+    }
+
+        .sidebar ul a li {
+            padding: 1.2rem 2rem;
+            border-bottom: .1rem solid var(--colorAzul);
+            align-items: center;
+            transition-property: background-color, color;
+            transition-duration: .3s;
+            transition-timing-function: ease-in-out;
+        }
+
+        .sidebar ul a li {
+            width: 100%;
+            border-bottom: .1rem solid var(--colorAzul);
+        }
+
+            .sidebar ul a li:hover {
+                background-color: var(--colorAzul);
+                color: var(--colorPrincipal)
+            }
+
+.info-visas {
+    background-color: var(--colorAzul);
+    padding: 1rem 0;
+}
+
+    .info-visas li {
+        margin-left: 2rem;
+        padding: 1rem 0;
+    }
+
+
+.informacion {
+    background-color: rgb(247, 247, 247);
+    grid-column: 2/3;
+    position: relative;
+}
+
+    .informacion .alert {
+        width: 60rem;
+        margin: 0 auto;
+    }
+
+nav {
+    background-color: var(--colorAzulOscuro) !important;
+    color: white;
+}
+
+    nav a {
+        color: white !important;
+    }
+
+.navbar-nav {
+    display: flex;
+    justify-content: end;
+}
+
+main {
+    margin-bottom: 5rem;
+}
+
+.col-6 .card-body {
+    height: 17rem;
+}
+
+.card {
+    margin: 0 auto;
+}
+
+.card-header {
+    font-family: var(--fuenteSecundaria);
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+footer {
+    background-color: var(--colorAzulOscuro);
+    height: 5rem;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CUENTA */
+.agregar-cuenta {
+    background-color: #7777773c;
+    width: 100%;
+    height: 17rem;
+    border: 3px dashed #49006652;
+    border-radius: 1rem;
+    transition: all .5s ease-in-out;
+    position: relative;
+}
+
+    .agregar-cuenta:hover {
+        background-color: #777777dc;
+        border: 4px dashed #490066;
+    }
+
+    .agregar-cuenta .btn {
+        color: white;
+        font-size: 6.3rem;
+        text-align: center;
+        padding: 0;
+        margin: auto auto;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+/* LOGIN */
+.login {
+    background-image: url(../img/fondo1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    .login form {
+        background-color: white;
+        width: 40rem;
+        padding: 2.5rem;
+        border-radius: 2.5rem;
+        box-shadow: 0.5rem 0.5rem 1rem black;
+    }

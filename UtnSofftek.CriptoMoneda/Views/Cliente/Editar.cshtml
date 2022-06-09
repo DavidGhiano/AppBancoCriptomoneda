@@ -1,0 +1,36 @@
+﻿@model ClienteModel
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mt-5">
+    <div class="card-header">
+        <h2 class="text-center">Mis datos</h2>
+    </div>
+    <form asp-action="Editar" asp-controller="Cliente" method="post">
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label">Nombre: </label>
+                <input  asp-for="Nombre"  type="text" class="form-control">
+                <span asp-validation-for="Nombre" class="text-danger"> </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido: </label>
+                <input  asp-for="Apellido"  type="text" class="form-control">
+                <span asp-validation-for="Apellido" class="text-danger"> </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">DNI: </label>
+                <input  asp-for="Dni"  type="text" class="form-control" disabled>
+                <span asp-validation-for="Dni" class="text-danger"> </span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input asp-for="IdCliente" type="hidden" class="form-control"/>
+            <button asp-action="Editar" asp-controller="Cliente" class="btn btn-primary d-block">Editar Datos</button>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-danger my-3 d-block">Volver a Inicio</a>
+        </div>
+    </form>
+</div>
+

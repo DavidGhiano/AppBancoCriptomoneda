@@ -1,0 +1,21 @@
+﻿@model ClienteModel
+@{
+    ViewData["Title"] = "VerDatos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mt-5">
+    <div class="card-header">
+        <h2 class="text-center">Mis datos</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>Nombre: </strong>@Model.Nombre</p>
+        <p><strong>Apellido: </strong>@Model.Apellido</p>
+        <p><strong>DNI: </strong>@Model.Dni</p>
+    </div>
+    <div class="card-footer">
+        
+        <a asp-action="Editar" asp-controller="Cliente" asp-route-id="@Model.IdCliente" class="btn btn-primary d-block">Editar Datos</a>
+    </div>
+</div>
+

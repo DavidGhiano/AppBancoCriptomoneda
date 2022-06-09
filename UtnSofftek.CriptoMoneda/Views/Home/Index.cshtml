@@ -1,0 +1,78 @@
+﻿@model ListaCuentaModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    @if (Model.listaCripto != null || Model.listaFiduciarias != null)
+    {
+        @foreach (var item in Model.listaFiduciarias)
+        {
+            <div class="col-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+
+                        @if (@item.Tipo == "ARG")
+                        {
+                            <h5 class="card-title">Cuenta en Pesos</h5>
+                        }
+                        else
+                        {
+                            <h5 class="card-title">Cuenta en Dolares</h5>
+                        }
+                        <p class="card-text">
+                            <strong>Nro Cuenta: </strong>@item.NroCuenta
+                        </p>
+                        <p class="card-text">
+                            <strong>CBU: </strong>@item.CBU
+                        </p>
+                        <p class="card-text">
+                            <strong>Alias: </strong>@item.Alias
+                        </p>
+                        <p class="card-text text-end">
+                            <strong>SALDO: </strong> @item.Tipo $@item.Saldo.ToString("0.##")
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="DatosCuentas"
+                   asp-controller="Cuentas"
+                   asp-route-id=@item.IdCuenta
+                   class="btn btn-primary d-block my-2">
+                            Ver Cuenta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        @foreach (var item in Model.listaCripto)
+        {
+            <div class="col-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cuenta en BitCoin</h5>
+                        <p class="card-text">
+                            <strong>UUID: </strong> @item.Uuid
+                        </p>
+                        <p class="card-text text-end">
+                            <strong>SALDO: </strong> BTC $@item.Saldo.ToString("0.0000##")
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="DatosCuentas"
+                   asp-controller="Cuentas"
+                   asp-route-id=@item.IdCuenta
+                   class="btn btn-primary d-block my-2">
+                            Ver Cuenta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+@if (Model.listaCripto == null && Model.listaFiduciarias == null)
+{
+    <div class="alert alert-info mt-5 text-center">
+        ¡No existe cuenta aun! ¿Qué esperas para hacerte una?
+    </div>
+}

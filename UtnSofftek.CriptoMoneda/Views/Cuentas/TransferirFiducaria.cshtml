@@ -1,0 +1,67 @@
+﻿@model TransferenciaModel
+@{
+    ViewData["Title"] = "TransferirFiducaria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mt-5">
+    <div class="card-header">
+        <h2 class="text-center">Transferir | CBU: @Model.FiduOrigen.CBU</h2>
+    </div>
+    <form asp-action="TransferirFiducaria" asp-controller="Cuenta" method="post">
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Saldo Disponible: </strong>@Model.FiduOrigen.Tipo <span>$</span>@Model.FiduOrigen.Saldo.ToString("0.##")
+            </p>
+            <div class="mb-3">
+                <label class="form-label">Ingrese la cuenta Destino </label>
+                <select asp-for=IdCuentaDestino class="form-select">
+                    @if (Model.ListaFiduciarias != null)
+                    {
+                        @foreach (var item in Model.ListaFiduciarias)
+                        {
+                            @if (Model.FiduOrigen.IdCuenta != item.IdCuenta)
+                            {
+                                <option value="@item.IdCuenta,@item.Tipo">
+                                    NroCuenta: @item.NroCuenta | <strong>@item.Tipo $@item.Saldo.ToString("0.##")</strong>
+                                </option>
+
+                            }
+                        }
+                    }
+                    @if (Model.ListaCripto != null)
+                    {
+                        @foreach (var item in Model.ListaCripto)
+                        {
+                            <option value="@item.IdCuenta,@item.Tipo">
+                                Uuid: @item.Uuid | <strong>@item.Tipo $@item.Saldo.ToString("0.0000##")</strong>
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Saldo a Transferir </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">@Model.FiduOrigen.Tipo $</span>
+                    <input asp-for=Saldo type="number" class="form-control" value=0 />
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <input asp-for=@Model.FiduOrigen.IdCuenta type="hidden" />
+            <input asp-for=@Model.FiduOrigen.Tipo type="hidden" />
+
+            <button asp-action="TransferirFiducaria"
+                    asp-controller="Cuentas"
+                    class="btn btn-warning">
+                Transferir
+            </button>
+            <a asp-action="DatosCuentas"
+               asp-controller="Cuentas"
+               asp-route-id=@Model.FiduOrigen.IdCuenta
+               class="btn btn-outline-danger my-3 d-block">Volver a Detalles de Cuenta</a>
+        </div>
+    </form>
+</div>

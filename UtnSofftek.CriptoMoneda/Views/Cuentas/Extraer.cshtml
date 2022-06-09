@@ -1,0 +1,47 @@
+﻿@model CuentasModel
+@{
+    ViewData["Title"] = "Extraer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card mt-5">
+    <div class="card-header">
+        <h2 class="text-center">Crear Cuenta</h2>
+    </div>
+    <form asp-action="Extraer" asp-controller="Cuenta" method="post">
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Saldo Disponible: </strong>@Model.Fiduciaria.Tipo $@Model.Fiduciaria.Saldo.ToString("0.##")
+            </p>
+            <div class="mb-3">
+                <label class="form-label">Ingrese la cantidad </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">ARS $</span>
+                    <input asp-for=Fiduciaria.Saldo type="number" class="form-control" value=0 />
+                </div>
+                @if (Model.Fiduciaria.Tipo == "USD")
+                {
+                    <div class="alert alert-dark">
+                        El deposito es en Pesos Argentino y la conversión en dolares se hace automáticamente
+                    </div>
+                }
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <input asp-for=@Model.Fiduciaria.IdCuenta type="hidden" />
+            <input asp-for=@Model.Fiduciaria.Tipo type="hidden" />
+
+            <button asp-action="Extraer"
+                    asp-controller="Cuentas"
+                    class="btn btn-primary">
+                Extraer
+            </button>
+            <a asp-action="DatosCuentas"
+               asp-controller="Cuentas"
+               asp-route-id=@Model.Fiduciaria.IdCuenta
+               class="btn btn-outline-danger my-3 d-block">Volver a Detalles de Cuenta</a>
+        </div>
+    </form>
+</div>
+
